@@ -1,0 +1,43 @@
+README
+
+dlz_perl_driver
+
+ABOUT
+
+dlz_perl_driver is a BIND DLZ plugin to allow BIND to run Perl modules to
+answer DNS queries. This plugin relies on functionality provided by BIND
+9.9.0 and above and utilizes the BIND DLZ dlopen() API.
+
+COMPILING
+
+dlz_perl_driver has been tested and builds on Linux and FreeBSD, 32- and 64-
+bit. Perl is required to build dlz_perl_driver but the BIND source code is
+not.
+
+USAGE
+
+Included is a sample named.conf file that will load the sample Perl module
+and use it to answer queries. See the named.conf.example and
+dlz_perl_example.pm for details, these files should work as is (assuming the
+module is compiled and placed in the location specified in named.conf.example)
+and should provide enough information to get started.
+
+Perl modules are free to warn and die as usual, but a callback is also provided
+that allows the module to log to the same logfile as BIND itself. A callback is
+also provided to allow Perl modules to access client information such as source
+IP and port. These callback APIs can be a little complicated so please see the
+example Perl module for usage.
+
+CHANGES
+
+2015-03-28
+ - Update for Bind 9.10.
+ - Move to github.
+ - Linux fixes.
+
+????
+
+2012-02-07
+ - Fix runtime argv assertion on some Perl versions.
+ - Create -v3 tarball that contains a pre-built module for FreeBSD.
+ - Add README.
